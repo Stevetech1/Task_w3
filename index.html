@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Landing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .product-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .product-image {
+            flex: 1;
+        }
+        .product-info {
+            flex: 1;
+            padding: 0 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Awesome Product</h1>
+        <p>Discover the amazing features of our revolutionary product!</p>
+    </div>
+    
+    <div class="container">
+        <div class="product-section">
+            <div class="product-image">
+                <img src="product-image.jpg" alt="Product Image" width="100%">
+            </div>
+            <div class="product-info">
+                <h2>Features</h2>
+                <ul>
+                    <li>High-quality performance</li>
+                    <li>Easy to use and install</li>
+                    <li>Long-lasting durability</li>
+                    <li>Enhanced security features</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email address:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                
+                <button type="submit">Submit</button>
+            </form>
+            <div id="error-message" class="error"></div>
+            <div id="success-message" class="success"></div>
+        </div>
+    </div>
+    
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+        
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Reset error and success messages
+            errorMessage.textContent = '';
+            successMessage.textContent = '';
+            
+            // Check for empty fields
+            let hasError = false;
+            const inputs = contactForm.querySelectorAll('input[required], textarea[required]');
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.border = '1px solid red';
+                    hasError = true;
+                } else {
+                    input.style.border = '1px solid #ccc';
+                }
+            });
+            
+            if (hasError) {
+                errorMessage.textContent = 'Please fill in all required fields.';
+                return;
+            }
+            
+            // Simulate form submission
+            setTimeout(() => {
+                successMessage.textContent = 'Thank you for your message. We will get in touch soon!';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
